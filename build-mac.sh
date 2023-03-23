@@ -2,6 +2,7 @@
 set -euf -o pipefail
 
 onnx_config="${1:-model.required_operators_and_types.config}"
+version="${2:-VERSION}"
 
 build_arch() {
 	onnx_config="$1"
@@ -53,6 +54,6 @@ build_arch "$onnx_config" arm64
 dir="onnxruntime-${version}-macOS-universal"
 mkdir -p "$dir/lib"
 
-lipo -create onnxruntime-macos_x86_64-static-combined.a onnxruntime-macos_arm64-static-combined.a -output "$dir/lib/libonnxruntime.a"
-rm onnxruntime-macos_x86_64-static-combined.a
-rm onnxruntime-macos_arm64-static-combined.a
+lipo -create onnxruntime-macOS_x86_64-static-combined.a onnxruntime-macOS_arm64-static-combined.a -output "$dir/lib/libonnxruntime.a"
+rm onnxruntime-macOS_x86_64-static-combined.a
+rm onnxruntime-macOS_arm64-static-combined.a

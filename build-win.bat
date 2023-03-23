@@ -4,7 +4,7 @@ setlocal
 	@set "ONNX_CONFIG=model.required_operators_and_types.config"
 )
 set "CMAKE_BUILD_TYPE=MinSizeRel"
-mkdir ".\libs\win-x86_64\%CMAKE_BUILD_TYPE%"
+mkdir ".\libs\windows-x86_64\%CMAKE_BUILD_TYPE%"
 
 "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -format value -property catalog_productLine > tmp || exit \b
 set /p version= < tmp
@@ -35,7 +35,7 @@ call onnxruntime\build.bat ^
 call "%installationPath%\VC\Auxiliary\Build\vcvarsall.bat" x86_x64 ^
 	|| exit \b
 
-lib.exe /OUT:".\libs\win-x86_64\%CMAKE_BUILD_TYPE%\onnxruntime.lib" ^
+lib.exe /OUT:".\libs\windows-x86_64\onnxruntime.lib" ^
   ".\onnxruntime\build\Windows\%CMAKE_BUILD_TYPE%\%CMAKE_BUILD_TYPE%\onnx.lib" ^
   ".\onnxruntime\build\Windows\%CMAKE_BUILD_TYPE%\%CMAKE_BUILD_TYPE%\onnx_proto.lib" ^
   ".\onnxruntime\build\Windows\%CMAKE_BUILD_TYPE%\%CMAKE_BUILD_TYPE%\onnxruntime_graph.lib" ^

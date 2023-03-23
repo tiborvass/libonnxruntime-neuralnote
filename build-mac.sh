@@ -21,7 +21,7 @@ build_arch() {
 	--cmake_extra_defines CMAKE_OSX_ARCHITECTURES="${arch}" \
 	--skip_tests
 
-	libtool -static -o "onnxruntime-macos_${arch}-static-combined.a" \
+	libtool -static -o "onnxruntime-macOS_${arch}-static-combined.a" \
 	"./onnxruntime/build/macOS_${arch}/${CMAKE_BUILD_TYPE}/libonnx.a" \
 	"./onnxruntime/build/macOS_${arch}/${CMAKE_BUILD_TYPE}/libonnxruntime_graph.a" \
 	"./onnxruntime/build/macOS_${arch}/${CMAKE_BUILD_TYPE}/libonnx_proto.a" \
@@ -50,7 +50,7 @@ build_arch() {
 build_arch "$onnx_config" x86_64
 build_arch "$onnx_config" arm64
 
-mkdir -p libs/macos-arm64_x86_64
+mkdir -p libs/macOS-universal
 lipo -create onnxruntime-macOS_x86_64-static-combined.a onnxruntime-macOS_arm64-static-combined.a -output libs/macOS-universal/libonnxruntime.a
 rm onnxruntime-macOS_x86_64-static-combined.a
 rm onnxruntime-macOS_arm64-static-combined.a

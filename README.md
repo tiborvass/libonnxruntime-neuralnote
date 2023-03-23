@@ -1,23 +1,22 @@
-# ONNX Runtime static library builder
+# ONNX Runtime static library builder for NeuralNote
 
-Converts an [ONNX](https://onnx.ai) model to ORT format and serializes it to C++ source code, generate custom slimmed ONNX Runtime static libs & xcframework for apple platforms.
+This is a fork of [https://github.com/olilarkin/ort-builder](https://github.com/olilarkin/ort-builder#readme) specialized for [NeuralNote](https://github.com/DamRsn/NeuralNote).
 
-The goal here is to create a flexible but tiny inference engine for use in Audio Plug-ins or Mobile apps e.g. [iPlug2 example](https://github.com/olilarkin/iPlug2OnnxRuntime).
+For a general purpose static library builder please go to the upstream repo.
 
-The scripts here are configured to create a minimal ORT binary using only the CPU provider. If you want to experiment with GPU inference, Core ML etc, you will have to modify 
+## Instructions to build ONNX Runtime static library for NeuralNote
 
-## Instructions:
+1. Create a [virtual environment](https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments) `$ python3 -m venv venv`
 
-1. Checkout ONNX Runtime `$ git clone https://github.com/microsoft/onnxruntime.git`
+2. Activate it `$ source ./venv/bin/activate`
 
-2. Place your model in the folder named model.onnx
+3. Install dependencies `$ pip install -r requirements.txt`
 
-3. Create a [virtual environment](https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments) `$ python3 -m venv venv`
+4. Run `./release.sh v1.14.1-neuralnote.1`
 
-4. Activate it `$ source ./venv/bin/activate`
+5. See platform specific tarballs.
 
-5. Install dependencies `$ pip install -r requirements.txt`
+# TODO
 
-6. Run `$ ./convert-model-to-ort.sh model.onnx`
-
-7. Build static libraries using one of the `build-xxx.sh` shell scripts
+- cross platform build
+- linux

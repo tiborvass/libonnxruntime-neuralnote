@@ -15,7 +15,7 @@ build_arch() {
 	--config=${CMAKE_BUILD_TYPE} \
 	--parallel \
 	--minimal_build \
-	--apple_deploy_target="10.13" \
+	--apple_deploy_target="10.11" \
 	--disable_ml_ops --disable_exceptions --disable_rtti \
 	--include_ops_by_config "$onnx_config" \
 	--enable_reduced_operator_type_support \

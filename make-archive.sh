@@ -23,31 +23,28 @@ elif test "$(uname)" = "Linux"; then
 	builder="build-linux.sh"
 fi
 
-clone() {
-	git clone -b $ORT_VERSION --depth 1 --shallow-submodules https://github.com/microsoft/onnxruntime
-}
-
-if ! test -d ./onnxruntime; then
-	clone
+if ! test -e ./onnxruntime/.git; then
+	git submodule update --init --recursive
 fi
 if test -n "$(git -C ./onnxruntime status --porcelain)"; then
-	rm -rf onnxruntime
-	clone
+	2>&1 echo "ERROR: local onnxruntime repo is not clean"
+	exit 1
 fi
 if test "$(git -C ./onnxruntime describe --always --tags)" != "$ORT_VERSION"; then
-	git -C ./onnxruntime checkout "$ORT_VERSION"
+	2>&1 echo "ERROR: local onnxruntime repo is not clean"
+	exit 1
 fi
 
 set -e
 dir="onnxruntime-${version}-${os}-${arch}"
 test -n "$dir"
+archive="$dir.tar.gz"
 rm -rf "./$dir"
 ./convert-model-to-ort.sh "model.onnx"
 "./$builder" model.required_operators_and_types.with_runtime_opt.config "${version}"
 
-(
-	cp -rf include "./$dir/include"
-	cp model.with_runtime_opt.ort "./$dir/"
-	tar -czf "onnxruntime-${version}-${os}-${arch}.tar.gz" "$dir"
-	rm -rf "./$dir/include" "./$dir/model.with_runtime_opt.ort"
-)
+# Believe it or not, git is the most cross platform archiving tool.
+git add -f include lib model.with_runtime_opt.ort
+git archive -o "$archive" --prefix "$dir/" $(git stash create) -- include lib model.with_runtime_opt.ort
+git reset
+git gc --prune=now

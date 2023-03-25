@@ -1,5 +1,4 @@
 venv
-onnxruntime
 .vscode/settings.json
 *.ort
 model/*

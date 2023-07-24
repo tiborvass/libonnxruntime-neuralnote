@@ -1,11 +1,15 @@
 #!/bin/bash
+
+# get onnx_config from parameter, or use default
+onnx_config="${1:-model.required_operators_and_types.config}"
+
 ./onnxruntime/build.sh \
 --config=MinSizeRel \
 --build_shared_lib \
 --parallel \
 --minimal_build \
 --disable_ml_ops --disable_exceptions --disable_rtti \
---include_ops_by_config model.required_operators_and_types.config \
+--include_ops_by_config "$onnx_config" \
 --enable_reduced_operator_type_support \
 --skip_tests
 

@@ -12,9 +12,9 @@ For a general purpose static library builder please go to the upstream repo.
 
 3. Install dependencies `$ pip install -r requirements.txt`
 
-4. Run `./convert-model-to-ort.sh model.onnx` on Mac or `.\convert-model-to-ort.bat model.onnx` on Windows
+4. For Mac or Linux, run `./convert-model-to-ort.sh model.onnx`. For Windows, run `.\convert-model-to-ort.bat model.onnx`
 
-5. Run `./build-mac.sh model.required_operators_and_types.with_runtime_opt.config` on Mac or `.\build-win.bat model.required_operators_and_types.with_runtime_opt.config` on Windows
+5. Run `./build-mac.sh model.required_operators_and_types.with_runtime_opt.config` on Mac or `.\build-win.bat model.required_operators_and_types.with_runtime_opt.config` on Windows, or `./build-linux.sh` on Linux
 
 6. The following files are ready to be used by consumer:
 

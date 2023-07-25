@@ -1,0 +1,18 @@
+create lib/libonnxruntime.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnx.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnx_proto.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_common.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_flatbuffers.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_framework.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_graph.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_mlas.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_mocked_allocator.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_optimizer.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_providers.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_session.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_test_utils.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnxruntime_util.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnx_test_data_proto.a
+addlib onnxruntime/build/Linux/MinSizeRel/libonnx_test_runner_common.a
+save
+end

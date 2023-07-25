@@ -16,5 +16,8 @@ onnx_config="${1:-model.required_operators_and_types.config}"
 # make-archive.sh expects the build process to put files in the ./lib directory
 # which is included in the archive.
 mkdir -p "lib"
+# ar will create a single static library (libonnxruntime.a) in  ./lib
+ar -M <libonnxruntime.mri
+# also copy shared libary (for now?) into ./lib while we figure out linker errors in NeuralNote
 # using find to avoid cp stat errors with wildcards
-find ./onnxruntime/build/Linux_x86_64/MinSizeRel -name "libonnxruntime.so*" -exec cp {} lib/ \;
+find ./onnxruntime/build/Linux/MinSizeRel -name "libonnxruntime.so*" -exec cp {} lib/ \;

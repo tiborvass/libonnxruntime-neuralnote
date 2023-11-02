@@ -6,3 +6,5 @@ model/*
 *.pyc
 onnxruntime-*
 onnxruntime.xcframework
+libonnxruntime.a
+libonnxruntime-neuralnote.tar.gz
